@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
@@ -27,6 +28,9 @@ public class MainActivity extends AppCompatActivity {
             Button gridButton = (Button) mLightGrid.getChildAt(buttonIndex);
             gridButton.setOnClickListener(this::onLightButtonClick);
         }
+
+        Button topLeftButton = (Button) mLightGrid.getChildAt(0);
+        topLeftButton.setOnLongClickListener(this::cheat);
 
         mLightOnColor = ContextCompat.getColor(this, R.color.yellow);
         mLightOffColor = ContextCompat.getColor(this, R.color.black);
@@ -54,6 +58,18 @@ public class MainActivity extends AppCompatActivity {
         if (mGame.isGameOver()) {
             Toast.makeText(this, R.string.congrats, Toast.LENGTH_SHORT).show();
         }
+    }
+
+    private boolean cheat(View view) {
+        mGame.turnOffAll();
+        setButtonColors();
+
+        // Congratulate the user if the game is over
+        if (mGame.isGameOver()) {
+            Toast.makeText(this, R.string.congrats, Toast.LENGTH_SHORT).show();
+        }
+
+        return true;
     }
 
     private void setButtonColors() {

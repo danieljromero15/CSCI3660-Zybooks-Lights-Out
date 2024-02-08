@@ -41,6 +41,14 @@ public class LightsOutGame {
         }
     }
 
+    public void turnOffAll(){
+        for (int row = 0; row < GRID_SIZE; row++) {
+            for (int col = 0; col < GRID_SIZE; col++) {
+                mLightsGrid[row][col] = false;
+            }
+        }
+    }
+
     public boolean isGameOver() {
         for (int row = 0; row < GRID_SIZE; row++) {
             for (int col = 0; col < GRID_SIZE; col++) {
