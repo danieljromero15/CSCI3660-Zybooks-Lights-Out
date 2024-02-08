@@ -83,8 +83,14 @@ public class MainActivity extends AppCompatActivity {
 
             if (mGame.isLightOn(row, col)) {
                 gridButton.setBackgroundColor(mLightOnColor);
+                gridButton.setContentDescription(getResources().getText(R.string.on));
+                //gridButton.setTextColor(getResources().getColor(R.color.black, getTheme()));
+                //gridButton.setText(R.string.on);
             } else {
                 gridButton.setBackgroundColor(mLightOffColor);
+                gridButton.setContentDescription(getResources().getText(R.string.off));
+                //gridButton.setTextColor(getResources().getColor(R.color.white, getTheme()));
+                //gridButton.setText(R.string.off);
             }
         }
     }
