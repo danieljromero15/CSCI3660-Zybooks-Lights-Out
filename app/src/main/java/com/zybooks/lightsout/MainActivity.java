@@ -2,7 +2,6 @@ package com.zybooks.lightsout;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -25,6 +24,8 @@ public class MainActivity extends AppCompatActivity {
     private int mLightOffColor;
     private final String GAME_STATE = "gameState";
     private int mLightOnColorId;
+
+    private final String COLOR_ID = "lightOnColorID";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +53,10 @@ public class MainActivity extends AppCompatActivity {
         } else {
             String gameState = savedInstanceState.getString(GAME_STATE);
             mGame.setState(gameState);
+
+            mLightOnColorId = savedInstanceState.getInt(COLOR_ID);
+            mLightOnColor = ContextCompat.getColor(this, mLightOnColorId);
+
             setButtonColors();
         }
     }
@@ -60,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putString(GAME_STATE, mGame.getState());
+        outState.putInt(COLOR_ID, mLightOnColorId);
     }
 
     private void startGame() {
